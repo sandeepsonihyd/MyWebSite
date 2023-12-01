@@ -22,4 +22,4 @@ jobs:
       
       # Runs a single command using the runners shell
       - name: Print First.txt
-        run: cat First.txt
+        run: cat first.txt
