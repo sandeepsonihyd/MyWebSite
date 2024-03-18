@@ -1,8 +1,8 @@
-This is by u1 - main
+This is by u1 - main - 
 testing..
 This is first file - u1/u2
 this is second line - main
-this is second line - b1
+this is second line - b1 - u1
 updated by u1
 this is fourth line
 this is last line
