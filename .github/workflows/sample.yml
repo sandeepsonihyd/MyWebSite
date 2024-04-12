@@ -1,24 +1,26 @@
-name: My Demo Workflow
+name: VariablesDemoWorkflow
 on:
- push:
-   branches:
-   - main
-   paths:
-   - '**'
-   - '!**/sample.yml'
- workflow_dispatch:
+  workflow_dispatch:
+
+env:
+  DAY_OF_WEEK: Monday
+
 jobs:
-  build-job:
+  example-job:
     runs-on: ubuntu-latest
+    env:
+      Greeting: Hello 
     steps:
-      - uses: actions/checkout@v3
+    - name: Print value of GREETING Variable - ${{ env.Greeting }}
+      run: |
+        echo "Value of Greeting is: ${{ env.Greeting }}"
+        echo "Value of Greeting is: $Greeting"
+        echo "Value of Repo Variable is: ${{ vars.REPO_VARIABLE1 }}"
+        echo "Value of Repo Secret is: ${{ secrets.REPO_SECRET1 }}"
+    
+    - name: "Say Hello, it's Monday"
+      if: ${{ env.DAY_OF_WEEK == 'Monday' }}
+      run: echo "${{ env.Greeting }} ${{ env.FirstName }}. Today is ${{ env.DAY_OF_WEEK }}!"
+      env:
+        FirstName: Sandeep
 
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Run a multi-line script
-        run: |
-          echo "FIRST.TXT"
-          cat first.txt
-          echo "SECOND.TXT"
-          cat second.txt
